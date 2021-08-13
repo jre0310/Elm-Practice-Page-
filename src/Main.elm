@@ -19,14 +19,14 @@ type alias Model = Int
 
 init : Model
 init =
-  10
+  0
 
 
 -- UPDATE
 
-type Msg = Increment | Decrement
+type Msg = Increment | Decrement | Reset
 
-update : Msg -> Model -> Model
+update : Msg -> Model -> Model 
 update msg model =
   case msg of
     Increment ->
@@ -34,6 +34,9 @@ update msg model =
 
     Decrement ->
       model - 2
+    
+    Reset ->
+      model - model
 
 
 -- VIEW
@@ -44,4 +47,5 @@ view model =
     [ button [ onClick Decrement ] [ text "Subtract 2" ]
     , div [] [ text (String.fromInt model) ]
     , button [ onClick Increment ] [ text "Add 2" ]
+    , button [ onClick Reset ] [ text "Reset back to 0" ]
     ]
